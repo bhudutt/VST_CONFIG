@@ -1,1 +1,20 @@
+jdbc:
+  url: jdbc:sqlserver://192.9.200.52:1433;databaseName=VST_DMS;
+  username: sa
+  password: 'VST.2022#'
+eureka:
+  client:
+      service-url:
+        defaultZone: http://Micro-Eureka-Service:8761/eureka/
+    instance:
+      prefer-ip-address: true
+
+  security:
+    oauth2:
+      resource:
+        token-info-uri:
+  http://Micro-Auth-Service:9191/auth-api/oauth/check_token
+      client:
+        client-id: vst-dms-view-client
+        client-secret: cnhindglobal
 
