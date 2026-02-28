@@ -1,5 +1,5 @@
 jdbc:
-    url: jdbc:sqlserver://192.9.200.52:1433;databaseName=VST_DMS;
+    url: jdbc:sqlserver://192.9.200.52:1433;databaseName=VST_DMS;trustServerCertificate=true
     username: sa
     password: 'VST.2022#'
 
@@ -7,13 +7,11 @@ jdbc:
     client:
       service-url:
         defaultZone: http://localhost:8761/eureka/
-    instance:
-      prefer-ip-address: true
 
   security:
     oauth2:
       resource:
-        token-info-uri: http://localhost:9191/auth-api/oauth/check_token 
+        token-info-uri: http://localhost:9191/auth-api/oauth/check_token
       client:
         client-id: vst-dms-view-client
         client-secret: cnhindglobal
