@@ -1,13 +1,8 @@
-jdbc:
+spring:
+  datasource:
     url: jdbc:sqlserver://192.9.200.52:1433;databaseName=VST_DMS;trustServerCertificate=true
     username: sa
     password: 'VST.2022#'
-
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://localhost:8761/eureka/
-
   security:
     oauth2:
       resource:
@@ -15,19 +10,11 @@ jdbc:
       client:
         client-id: vst-dms-view-client
         client-secret: cnhindglobal
-
-  file:
-    upload-dir:
-      Temp: C:/VST-DMS-APPS/FILES/Temp/
-      Main: C:/VST-DMS-APPS/FILES/
-
-  spring:
-    rabbitmq:
-      host: localhost
-      port: 5672
-      username: guest
-      password: guest
-
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   mail:
     host: 192.9.200.204
     port: 587
@@ -36,3 +23,13 @@ jdbc:
     properties:
       mail.smtp.auth: true
       mail.smtp.starttls.enable: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+file:
+  upload-dir:
+    Temp: C:/VST-DMS-APPS/FILES/Temp/
+    Main: C:/VST-DMS-APPS/FILES/
