@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://192.9.200.52:1433;databaseName=VST_DMS;trustServerCertificate=true
-    username: sa
-    password: 'VST.2022#'
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   security:
     oauth2:
       resource:
@@ -10,6 +10,24 @@ spring:
       client:
         client-id: vst-dms-view-client
         client-secret: cnhindglobal
+
+# ── jdbc.* bridge — PersistenceConfiguration uses jdbc.* namespace ────────────
+jdbc:
+  url: ${spring.datasource.url}
+  username: ${spring.datasource.username}
+  password: ${spring.datasource.password}
+  urlForReports: ${spring.datasource.url}
+  usernameForReports: ${spring.datasource.username}
+  passwordForReports: ${spring.datasource.password}
+
+# ── security.oauth2.* bridge — old Spring Security OAuth2 namespace ───────────
+security:
+  oauth2:
+    resource:
+      token-info-uri: ${spring.security.oauth2.resource.token-info-uri}
+    client:
+      client-id: ${spring.security.oauth2.client.client-id}
+      client-secret: ${spring.security.oauth2.client.client-secret}
   rabbitmq:
     host: localhost       # TODO: update with actual prod RabbitMQ host
     port: 5672
