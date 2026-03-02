@@ -1,48 +1,49 @@
 eureka:
-    client:
-      register-with-eureka: true
-      fetch-registry: true
-    server:
-      wait-time-in-ms-when-sync-empty: 0
-    instance:
-      prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
 
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: health, info, prometheus
-    endpoint:
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
       prometheus:
         enabled: true
-    metrics:
-      export:
-        prometheus:
-          enabled: true
 
-  # RabbitMQ queue/exchange names (same across all environments)
-  mail_forgot_password:
-    queue: forgotpassword.queue
-    exchange: forgotpassword.exchange
-    routing_key: forgot.password.routing.key
-  mail_change_password:
-    queue: changepassword.queue
-    exchange: changepassword.exchange
-    routing_key: changepassword.routing.key
-  mail_create_enq:
-    queue: enqCreate.queue
-    exchange: enqCreate.exchange
-    routing_key: enqCreate.routing.key
-  mail_validated_enq:
-    queue: enqvalidated.queue
-    exchange: enqvalidated.exchange
-    routing_key: enqvalidated.routing.key
-  mail_followup_enq:
-    queue: followupenq.queue
-    exchange: followupenq.exchange
-    routing_key: followupenq.routing.key
-  mail_retailfollowup_enq:
-    queue: retailfollowupenq.queue
-    exchange: retailfollowupenq.exchange
-    routing_key: retailfollowupenq.routing.key
+mail_forgot_password:
+  queue: forgotpassword.queue
+  exchange: forgotpassword.exchange
+  routing_key: forgot.password.routing.key
 
+mail_change_password:
+  queue: changepassword.queue
+  exchange: changepassword.exchange
+  routing_key: changepassword.routing.key
+
+mail_create_enq:
+  queue: enqCreate.queue
+  exchange: enqCreate.exchange
+  routing_key: enqCreate.routing.key
+
+mail_validated_enq:
+  queue: enqvalidated.queue
+  exchange: enqvalidated.exchange
+  routing_key: enqvalidated.routing.key
+
+mail_followup_enq:
+  queue: followupenq.queue
+  exchange: followupenq.exchange
+  routing_key: followupenq.routing.key
+
+mail_retailfollowup_enq:
+  queue: retailfollowupenq.queue
+  exchange: retailfollowupenq.exchange
+  routing_key: retailfollowupenq.routing.key
