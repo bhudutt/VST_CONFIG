@@ -1,1 +1,7 @@
+eureka:
+  server:
+    enable-self-preservation: false
 
+logging:
+  level:
+    root: DEBUG
