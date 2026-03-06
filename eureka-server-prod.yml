@@ -1,1 +1,8 @@
+eureka:
+  server:
+    enable-self-preservation: true
 
+logging:
+  level:
+    root: WARN
+    com.hitech: INFO
