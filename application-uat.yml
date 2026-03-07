@@ -20,7 +20,7 @@ security:
 eureka:
   client:
     service-url:
-      defaultZone: https://eureka-server/eureka/
+      defaultZone: http://eureka-server/eureka/
   instance:
     hostname: vstdlr.vstshakti.in
     instance-id: ${spring.application.name}:${eureka.instance.hostname}:${server.port}
