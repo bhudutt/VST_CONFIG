@@ -1,0 +1,8 @@
+logging:
+  level:
+    root: INFO
+    com.hitech: INFO
+    org.springframework.security: INFO
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    org.apache.http: WARN
