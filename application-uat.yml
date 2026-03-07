@@ -21,6 +21,9 @@ eureka:
   client:
     service-url:
       defaultZone: https://vstdlr.vstshakti.in/eureka/
+  instance:
+    hostname: vstdlr.vstshakti.in
+    instance-id: ${spring.application.name}:${eureka.instance.hostname}:${server.port}
 
 file:
   upload-dir:
