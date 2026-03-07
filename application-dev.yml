@@ -3,46 +3,13 @@ spring:
     url: jdbc:sqlserver://192.9.200.52:1433;databaseName=VST_DMS;trustServerCertificate=true
     username: sa
     password: 'VST.2022#'
-  security:
-    oauth2:
-      resource:
-        token-info-uri: http://Micro-Auth-Service:9191/auth-api/oauth/check_token
-      client:
-        client-id: vst-dms-view-client
-        client-secret: cnhindglobal
 
-# ── jdbc.* bridge — PersistenceConfiguration uses jdbc.* namespace, not spring.datasource.* ──
-# All services share the same dev DB via spring.datasource.* above.
-# Override jdbc.url in a service-specific *-dev.properties only if that service uses a different DB.
-jdbc:
-  url: ${spring.datasource.url}
-  username: ${spring.datasource.username}
-  password: ${spring.datasource.password}
-  urlForReports: ${spring.datasource.url}
-  usernameForReports: ${spring.datasource.username}
-  passwordForReports: ${spring.datasource.password}
-
-# ── security.oauth2.* bridge — old Spring Security OAuth2 namespace ───────────
 security:
-  oauth2:
-    resource:
-      token-info-uri: ${spring.security.oauth2.resource.token-info-uri}
-    client:
-      client-id: ${spring.security.oauth2.client.client-id}
-      client-secret: ${spring.security.oauth2.client.client-secret}
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
-  mail:
-    host: 192.9.200.204
-    port: 587
-    username: itsupport@vsttillers.com
-    password: vst.2017
-    properties:
-      mail.smtp.auth: true
-      mail.smtp.starttls.enable: true
 
 eureka:
   client:
