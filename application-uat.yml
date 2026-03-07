@@ -3,29 +3,8 @@ spring:
     url: jdbc:sqlserver://<UAT_SQL_HOST>:1433;databaseName=VST_DMS;trustServerCertificate=true
     username: <UAT_SQL_USER>
     password: <UAT_SQL_PASSWORD>
-  security:
-    oauth2:
-      resource:
-        token-info-uri: http://Micro-Auth-Service:9191/auth-api/oauth/check_token
-      client:
-        client-id: vst-dms-view-client
-        client-secret: cnhindglobal
-
-jdbc:
-  url: ${spring.datasource.url}
-  username: ${spring.datasource.username}
-  password: ${spring.datasource.password}
-  urlForReports: ${spring.datasource.url}
-  usernameForReports: ${spring.datasource.username}
-  passwordForReports: ${spring.datasource.password}
 
 security:
-  oauth2:
-    resource:
-      token-info-uri: ${spring.security.oauth2.resource.token-info-uri}
-    client:
-      client-id: ${spring.security.oauth2.client.client-id}
-      client-secret: ${spring.security.oauth2.client.client-secret}
   rabbitmq:
     host: <UAT_RABBITMQ_HOST>
     port: 5672
@@ -37,14 +16,6 @@ security:
       simple:
         acknowledge-mode: manual
         prefetch: 100
-  mail:
-    host: 192.9.200.204
-    port: 587
-    username: itsupport@vsttillers.com
-    password: vst.2017
-    properties:
-      mail.smtp.auth: true
-      mail.smtp.starttls.enable: true
 
 eureka:
   client:
