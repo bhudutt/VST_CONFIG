@@ -9,6 +9,9 @@ server:
   error:
     include-message: always
     include-binding-errors: always
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
 
 spring:
   main:
