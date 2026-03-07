@@ -1,0 +1,21 @@
+spring:
+  thymeleaf:
+    cache: false
+
+file:
+  upload-dir:
+    AprMappingTemplate: C:/VST-DMS-APPS/Template/APR Template/
+    AddVillageTemp: C:/VST-DMS-APPS/template/add-village/
+    SfrMappingTemplate: C:/VST-DMS-APPS/Template/SFR Template/
+
+logging:
+  level:
+    root: INFO
+    com.hitech: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
