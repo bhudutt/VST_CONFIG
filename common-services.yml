@@ -1,0 +1,55 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /common
+    session:
+      cookie:
+        http-only: true
+        secure: false
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  main:
+    banner-mode: off
+    allow-circular-references: true  # required: spring-cloud-starter-oauth2 2.2.x + Spring Boot 2.6.x
+  devtools:
+    restart:
+      enabled: false
+  session:
+    store-type: jdbc
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: always
+  thymeleaf:
+    cache: true  # overridden to false in common-services-dev.yml
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: env,beans
+  endpoint:
+    auditevents:
+      enabled: true
+
+springdoc:
+  version: '@springdoc.version@'
+
+logging:
+  level:
+    root: INFO
+    com.hitech: INFO
+    org.springframework.security: INFO
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
