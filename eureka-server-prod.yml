@@ -1,4 +1,8 @@
+# Copy to VST_CONFIG - prod profile (vstdms.vstshakti.in)
 eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SELF_URL:https://vstdms.vstshakti.in/eureka/}
   server:
     enable-self-preservation: true
 
