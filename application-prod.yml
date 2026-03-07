@@ -6,7 +6,7 @@ spring:
   security:
     oauth2:
       resource:
-        token-info-uri: https://vstdms.vstshakti.in/auth-api/oauth/check_token
+        token-info-uri: http://Micro-Auth-Service:9191/auth-api/oauth/check_token
       client:
         client-id: vst-dms-view-client
         client-secret: cnhindglobal
