@@ -1,0 +1,78 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /administration
+    session:
+      cookie:
+        http-only: true
+        secure: false
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  main:
+    banner-mode: off
+    allow-circular-references: true  # required: spring-cloud-starter-oauth2 2.2.x + Spring Boot 2.6.x
+  devtools:
+    restart:
+      enabled: false
+  session:
+    store-type: jdbc
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: always
+  thymeleaf:
+    cache: true  # overridden to false in administration-server-dev.yml
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+# Admin-specific extra upload directories (Temp and Main come from shared application-{profile}.yml)
+file:
+  upload-dir:
+    AprMappingTemplate: ${APR_TEMPLATE_DIR:/var/VST-DMS-APPS/Template/APR Template/}
+    AddVillageTemp: ${ADD_VILLAGE_TEMP_DIR:/var/VST-DMS-APPS/template/add-village/}
+    SfrMappingTemplate: ${SFR_TEMPLATE_DIR:/var/VST-DMS-APPS/Template/SFR Template/}
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: env,beans
+  endpoint:
+    auditevents:
+      enabled: true
+
+feign:
+  circuitbreaker:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+        loggerLevel: BASIC
+      postFeignClient:
+        loggerLevel: FULL
+
+springdoc:
+  version: '@springdoc.version@'
+
+logging:
+  level:
+    root: INFO
+    com.hitech: INFO
+    org.springframework.security: INFO
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
