@@ -1,17 +1,16 @@
 spring:
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:sqlserver://<PROD_SQL_HOST>:1433;databaseName=VST_DMS;trustServerCertificate=true
+    username: <PROD_SQL_USER>
+    password: <PROD_SQL_PASSWORD>
   security:
     oauth2:
       resource:
-        token-info-uri: http://Micro-Auth-Service:9191/auth-api/oauth/check_token
+        token-info-uri: https://vstdms.vstshakti.in/auth-api/oauth/check_token
       client:
         client-id: vst-dms-view-client
         client-secret: cnhindglobal
 
-# ── jdbc.* bridge — PersistenceConfiguration uses jdbc.* namespace ────────────
 jdbc:
   url: ${spring.datasource.url}
   username: ${spring.datasource.username}
@@ -20,7 +19,6 @@ jdbc:
   usernameForReports: ${spring.datasource.username}
   passwordForReports: ${spring.datasource.password}
 
-# ── security.oauth2.* bridge — old Spring Security OAuth2 namespace ───────────
 security:
   oauth2:
     resource:
@@ -29,11 +27,11 @@ security:
       client-id: ${spring.security.oauth2.client.client-id}
       client-secret: ${spring.security.oauth2.client.client-secret}
   rabbitmq:
-    host: localhost       # TODO: update with actual prod RabbitMQ host
+    host: <PROD_RABBITMQ_HOST>
     port: 5672
     username: guest
     password: guest
-    publisher-confirm-type: correlated   # replaces deprecated publisher-confirms: true
+    publisher-confirm-type: correlated
     publisher-returns: true
     listener:
       simple:
@@ -51,7 +49,7 @@ security:
 eureka:
   client:
     service-url:
-      defaultZone: http://Micro-Eureka-Service:8761/eureka/
+      defaultZone: https://vstdms.vstshakti.in/eureka/
 
 file:
   upload-dir:
