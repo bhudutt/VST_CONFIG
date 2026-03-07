@@ -1,0 +1,14 @@
+server:
+  servlet:
+    session:
+      cookie:
+        secure: true  # enforce HTTPS-only cookie in production
+
+logging:
+  level:
+    root: WARN
+    com.hitech: INFO
+    org.springframework.security: WARN
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    org.apache.http: WARN
