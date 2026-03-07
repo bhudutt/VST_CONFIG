@@ -1,4 +1,8 @@
+# Copy to VST_CONFIG - UAT profile (vstdlr.vstshakti.in)
 eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SELF_URL:https://vstdlr.vstshakti.in/eureka/}
   server:
     enable-self-preservation: true
 
