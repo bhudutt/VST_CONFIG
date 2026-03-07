@@ -1,0 +1,10 @@
+logging:
+  level:
+    root: INFO
+    com.hitech: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: INFO
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
