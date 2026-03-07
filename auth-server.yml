@@ -1,0 +1,39 @@
+server:
+  port: 9191
+  servlet:
+    context-path: /auth-api
+    session:
+      cookie:
+        http-only: true
+        secure: false
+
+spring:
+  main:
+    banner-mode: off
+    allow-circular-references: true  # required: spring-cloud-starter-oauth2 2.2.x + Spring Boot 2.6.x
+  devtools:
+    restart:
+      enabled: false  # OAuth2 Authorization Server — hot-restart corrupts token store state
+  session:
+    store-type: jdbc
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: never  # table already exists in DB; use 'always' only on a fresh DB
+  thymeleaf:
+    cache: true  # overridden to false in auth-server-dev.yml
+  sleuth:
+    tx:
+      enabled: false
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: OAuth2 Authorization Server - VST DMS
+    version: "@project.version@"
+
+logging:
+  level:
+    root: INFO
+    com.hitech: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
