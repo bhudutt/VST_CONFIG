@@ -1,0 +1,30 @@
+spring:
+  thymeleaf:
+    cache: false
+
+file:
+  upload-dir:
+    Report: C:/VST-DMS-APPS/REPORTS/Allotment/
+    Reporttwo: C:/VST-DMS-APPS/REPORTS/Delivery Challan/
+    Reportthree: C:/VST-DMS-APPS/REPORTS/machine invoice/
+    PartySearchReport: C:/VST-DMS-APPS/REPORTS/partyMaster/
+    ReportActivitySearch: C:/VST-DMS-APPS/REPORTS/activity search detail/
+    ReportActivityPlanSearch: C:/VST-DMS-APPS/REPORTS/activity plan detail/
+    ReportPlanApproval: C:/VST-DMS-APPS/REPORTS/plan approval/
+    ReportQuotationval: C:/VST-DMS-APPS/REPORTS/Quotation/
+    PARTYMASTER: C:/VST-DMS-APPS/FILES/Temp/
+    gstInvoice: C:/VST-DMS-APPS/REPORTS/gst invoice/
+    vstUserPath: C:/VST-DMS-APPS/REPORTS/vst user/
+    orgHierPath: C:/VST-DMS-APPS/REPORTS/field org/
+
+logging:
+  level:
+    root: INFO
+    com.hitech: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
