@@ -1,0 +1,150 @@
+server:
+  port: 8086
+  servlet:
+    context-path: /presaleEnquiryReport
+    session:
+      cookie:
+        http-only: true
+        secure: false
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  jmx:
+    enabled: true
+    default-domain: presales-enquiry-report
+  main:
+    banner-mode: off
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
+  session:
+    store-type: jdbc
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: always
+  thymeleaf:
+    cache: true
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+jasper:
+  reports:
+    path: classpath:reports/
+    compile-on-startup: true
+    cache-enabled: true
+  temp:
+    directory: ${java.io.tmpdir}/dms-jasper-reports
+  cleanup:
+    enabled: true
+  template:
+    path: Reports/Enquiry_DayToDay_Chart_Report.jasper
+
+enquiry:
+  report:
+    every2min:
+      cron: "0 */2 * * * *"
+      cronWeeder: "0 */2 * * * *"
+    scheduler:
+      enabled: true
+    email:
+      recipients: bhudutt.sharma@hitechroboticsystemz.com,sadhna.g@vsttractors.com,harbans.kumar@hitechroboticsystemz.com,vikas.dev@hitechroboticsystemz.com,Prasanth.sankaran@vsttractors.com,murthujavali.o@vsttractors.com,vinod@vsttractors.com,raghu.p@vsttractors.com
+      subject: "DMS Enquiry Report "
+      weederRecipt: bhudutt.sharma@hitechroboticsystemz.com,nikhil.ul@vsttractors.com,Prasanth.sankaran@vsttractors.com
+      weederSubject: "Weeder Report"
+
+excel:
+  max:
+    records:
+      per:
+        sheet: 50000
+  memory:
+    optimization: true
+
+report:
+  daily:
+    cron: "*/2 * * * * *"
+  weekly:
+    cron: "*/2 * * * * *"
+
+cron:
+  expression:
+    schedule: "0 30 23 * * ?"
+
+ftp:
+  host: 192.168.106.74
+  username: TOC
+  password: T0c@!@$
+  remoteDir: /soft/TOC_FTP/INBOUND/
+  remoteDirTraining: /soft/TOC_FTP/Desktop/
+  connection:
+    timeout: 30000
+
+file:
+  upload-dir:
+    Report: /var/VST-DMS-APPS/REPORTS/
+    EnquiryReport: /var/VST-DMS-APPS/REPORTS/ENQ/
+    summaryReport: /var/VST-DMS-APPS/REPORTS/SUMMARY/
+    TocReport: /var/VST-DMS-APPS/REPORTS/TOC/
+    GoodsTransit: /var/VST-DMS-APPS/REPORTS/Goods-Transit/
+    AdvanceTrackingReport: /var/VST-DMS-APPS/advanceTrackingReport/AdvanceReport/
+    dashboardEnquiryReport: /var/VST-DMS-APPS/REPORTS/enqdashboard/
+    weederReport: /var/VST-DMS-APPS/REPORTS/weederreport/
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: env,beans
+    jmx:
+      exposure:
+        include: "*"
+  endpoint:
+    auditevents:
+      enabled: true
+    jmx:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+feign:
+  circuitbreaker:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+        loggerLevel: BASIC
+      postFeignClient:
+        loggerLevel: FULL
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /api-doc
+  swagger-ui:
+    path: /swagger-ui-custom.html
+
+logging:
+  level:
+    root: INFO
+    com.hitech: INFO
+    org.springframework.security: INFO
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
