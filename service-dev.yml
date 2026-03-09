@@ -1,0 +1,21 @@
+spring:
+  thymeleaf:
+    cache: false
+
+file:
+  upload-dir:
+    SpareTemplate: C:/VST-DMS-APPS/Template/Spare Template/
+    OldChassisReports: C:/VST-DMS-APPS/OLDCHASSISREPORTS/OldChassis/
+    QuotationReports: C:/VST-DMS-APPS/REPORTS/Quotation/
+    BookingReports: C:/VST-DMS-APPS/BOOKINGREPORTS/ServiceBooking/
+    RequisitionReports: C:/VST-DMS-APPS/REQUISITIONREPORTS/Requisition/
+    SpareIssueReports: C:/VST-DMS-APPS/REPORTS/SpareIssue/
+    SpareReturnReports: C:/VST-DMS-APPS/REPORTS/SpareReturn/
+    RequisitionPrint: C:/VST-DMS-APPS/REPORTS/RequsitonPrint/
+    ActivityGstClaimInvPrint: C:/VST-DMS-APPS/REPORTS/ActGstInvClaim/
+
+logging:
+  level:
+    root: DEBUG
+    com.hitech: DEBUG
+    org.springframework.security: DEBUG
