@@ -1,0 +1,95 @@
+server:
+  port: 8096
+  servlet:
+    context-path: /servicecustomer
+    session:
+      cookie:
+        http-only: true
+        secure: false
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  main:
+    banner-mode: off
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
+  devtools:
+    restart:
+      enabled: false
+  session:
+    store-type: jdbc
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: always
+  thymeleaf:
+    cache: true  # overridden to false in service-customer-dev.yml
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+# Customer-specific dirs (Temp and Main come from shared application-{profile}.yml)
+file:
+  upload-dir:
+    JobCardReport: /var/VST-DMS-APPS/REPORTS/jobcard preInvoice/
+    JobCardOpenReport: /var/VST-DMS-APPS/REPORTS/JobCard Open/
+    JobCardBillingReport: /var/VST-DMS-APPS/REPORTS/JobCard Billing/
+    jobCardReports: /var/VST-DMS-APPS/REPORTS/jobCardExcel/
+    BillingReports: /var/VST-DMS-APPS/REPORTS/Billing/
+    reminderServiceTemplate: /var/VST-DMS-APPS/REPORTS/Reminder-Service/Excel/
+    servicePlanStatusTemplate: /var/VST-DMS-APPS/REPORTS/Plan-Status/Excel/
+    historyCardServiceTemplate: /var/VST-DMS-APPS/REPORTS/History-Card/Excel/
+    serviceJobcardImageDownload: /var/VST-DMS-APPS/FILES/dms-service-customer/images/
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: env,beans
+  endpoint:
+    auditevents:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+feign:
+  circuitbreaker:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+        loggerLevel: BASIC
+      postFeignClient:
+        loggerLevel: FULL
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /api-doc
+  swagger-ui:
+    path: /swagger-ui-custom.html
+
+logging:
+  level:
+    root: INFO
+    com.hitech: INFO
+    org.springframework.security: INFO
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
