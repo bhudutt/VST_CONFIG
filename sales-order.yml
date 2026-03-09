@@ -1,0 +1,89 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /saleOrder
+    session:
+      cookie:
+        http-only: true
+        secure: false
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  main:
+    banner-mode: off
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
+  session:
+    store-type: jdbc
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: always
+  thymeleaf:
+    cache: true
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+file:
+  upload-dir:
+    Report: /var/VST-DMS-APPS/REPORTS/pdi/
+    ReportTwo: /var/VST-DMS-APPS/REPORTS/grn/
+    ReportThree: /var/VST-DMS-APPS/REPORTS/machine po/
+    ReportFour: /var/VST-DMS-APPS/REPORTS/purchase return/
+    ReportFive: /var/VST-DMS-APPS/REPORTS/gst invoice/
+    StockTemplate: /var/VST-DMS-APPS/Template/Stock Template/
+    Reports: /var/VST-DMS-APPS/REPORTS/Stock/
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: env,beans
+  endpoint:
+    auditevents:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+feign:
+  circuitbreaker:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+        loggerLevel: BASIC
+      postFeignClient:
+        loggerLevel: FULL
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /api-doc
+  swagger-ui:
+    path: /swagger-ui-custom.html
+
+logging:
+  level:
+    root: INFO
+    com.hitech: INFO
+    org.springframework.security: INFO
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
