@@ -1,0 +1,14 @@
+spring:
+  thymeleaf:
+    cache: false
+
+file:
+  upload-dir:
+    Template: C:/VST-DMS-APPS/FILES/Template/
+    InstallationImg: C:/VST-DMS-APPS/FILES/installation/
+
+logging:
+  level:
+    root: DEBUG
+    com.hitech: DEBUG
+    org.springframework.security: DEBUG
