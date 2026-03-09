@@ -1,0 +1,126 @@
+server:
+  port: 9099
+  servlet:
+    context-path: /servicespare
+    session:
+      cookie:
+        http-only: true
+        secure: false
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  main:
+    banner-mode: off
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
+  devtools:
+    restart:
+      enabled: false
+  session:
+    store-type: jdbc
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: always
+  thymeleaf:
+    cache: true  # overridden to false in service-spare-dev.yml
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+# Spare-specific dirs (Temp and Main come from shared application-{profile}.yml)
+file:
+  upload-dir:
+    SpareTemplate: /var/VST-DMS-APPS/template/template/
+    customerTemplate: /var/VST-DMS-APPS/template/customer-order/
+    DcTemplate: /var/VST-DMS-APPS/REPORTS/Delivery Challan/Excel/
+    DcPdfTemplate: /var/VST-DMS-APPS/REPORTS/Delivery Challan/pdf/
+    InvoiceReturnDOc: /var/VST-DMS-APPS/template/InvoiceReturn/
+    SparePoPrintReport: /var/VST-DMS-APPS/REPORTS/SparePo/Print/
+    CouponManagementReport: /var/VST-DMS-APPS/REPORTS/CouponManagement/
+    InvoiceReturnReport: /var/VST-DMS-APPS/REPORTS/InvoiceReturn/
+    CoTemplate: /var/VST-DMS-APPS/REPORTS/Customer-Order/Excel/
+    Grn: /var/VST-DMS-APPS/REPORTS/spare/Excel/Grn/
+    GrnPrint: /var/VST-DMS-APPS/REPORTS/spare/Print/Grn/
+    InventoryTransfer: /var/VST-DMS-APPS/REPORTS/spare/Excel/InventoryTransfer/
+    Claim: /var/VST-DMS-APPS/REPORTS/spare/Excel/Claim/
+    BranchTransferIndent: /var/VST-DMS-APPS/REPORTS/spare/Excel/BranchTransfer/Indent/
+    BranchTransferIssue: /var/VST-DMS-APPS/REPORTS/spare/Excel/BranchTransfer/Issue/
+    BranchTransferReceipt: /var/VST-DMS-APPS/REPORTS/spare/Excel/BranchTransfer/Receipt/
+    PickList: /var/VST-DMS-APPS/REPORTS/spare/Print/Picklist/
+    SaleInvoice: /var/VST-DMS-APPS/REPORTS/spare/Excel/SaleInvoice/
+    SaleInvoicePrint: /var/VST-DMS-APPS/REPORTS/spare/Print/SaleInvoice/
+    SpareClaimUpload: /var/VST-DMS-APPS/Micro-Frontend_Apps/dms-service-requisition/assets
+    InvoiceQRCodeUpload: /var/VST-DMS-APPS/Micro-Frontend_Apps/dms-service-requisition/assets/invoiceQR
+    cdTemplate: /var/VST-DMS-APPS/REPORTS/Credit-Debit-Note/pdf/
+    pvTemplate: /var/VST-DMS-APPS/REPORTS/Payment-Voucher/pdf/
+    pvExcelTemplate: /var/VST-DMS-APPS/REPORTS/Payment-Voucher/Excel/
+    cdnExcelTemplate: /var/VST-DMS-APPS/REPORTS/Credit-Debit-Note/Excel/
+    partInvoiceTemplate: /var/VST-DMS-APPS/REPORTS/Part-Invoice/Excel/
+    kpdOrderStatusTemplate: /var/VST-DMS-APPS/REPORTS/Kpd-Order-Status/Excel/
+    partGrnTemplate: /var/VST-DMS-APPS/REPORTS/Part-Grn/Excel/
+    partStockTemplate: /var/VST-DMS-APPS/REPORTS/Part-Stock/Excel/
+    poStatusTemplate: /var/VST-DMS-APPS/REPORTS/Po-Status/Excel/
+    aprReturnTemplate: /var/VST-DMS-APPS/REPORTS/Apr-Return/Excel/
+    aprPdfTemplate: /var/VST-DMS-APPS/REPORTS/Apr-Return/Pdf/
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: env,beans
+  endpoint:
+    auditevents:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+feign:
+  circuitbreaker:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+        loggerLevel: BASIC
+      postFeignClient:
+        loggerLevel: FULL
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /api-doc
+  swagger-ui:
+    path: /swagger-ui-custom.html
+
+einvoicing:
+  enabled: true
+  username: ${CLEARTAX_USERNAME:bhudutt.sharma@hitechroboticsystemz.com}
+  password: ${CLEARTAX_PASSWORD:India@123}
+  gstin: ${COMPANY_GSTIN:29AAFCD5862R000}
+  auto-generate: false
+  require-approval: true
+
+logging:
+  level:
+    root: INFO
+    com.hitech: INFO
+    org.springframework.security: INFO
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
