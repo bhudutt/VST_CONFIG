@@ -1,0 +1,90 @@
+server:
+  port: 9091
+  servlet:
+    context-path: /administrationReport
+    session:
+      cookie:
+        http-only: true
+        secure: false
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  main:
+    banner-mode: off
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
+  devtools:
+    restart:
+      enabled: false
+  session:
+    store-type: jdbc
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: always
+  thymeleaf:
+    cache: true  # overridden to false in administration-server-report-dev.yml
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+# Report-specific dirs (Temp and Main come from shared application-{profile}.yml)
+file:
+  upload-dir:
+    Admin: ${ADMIN_REPORT_DIR:/var/VST-DMS-APPS/REPORTS/Admin/}
+    DealerMasterTemp: ${DEALER_MASTER_TEMP_DIR:/var/VST-DMS-APPS/Template/dealer-master/}
+    userActivityLogTemp: ${USER_ACTIVITY_LOG_DIR:/var/VST-DMS-APPS/REPORTS/activity log/}
+    ledgerTemplate: ${LEDGER_TEMPLATE_DIR:/var/VST-DMS-APPS/Template/Ledger Template/}
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: env,beans
+  endpoint:
+    auditevents:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+feign:
+  circuitbreaker:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+        loggerLevel: BASIC
+      postFeignClient:
+        loggerLevel: FULL
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /api-doc
+  swagger-ui:
+    path: /swagger-ui-custom.html
+
+logging:
+  level:
+    root: INFO
+    com.hitech: INFO
+    org.springframework.security: INFO
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
