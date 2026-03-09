@@ -1,0 +1,22 @@
+spring:
+  thymeleaf:
+    cache: false
+
+file:
+  upload-dir:
+    Admin: C:/VST-DMS-APPS/REPORTS/Admin/
+    DealerMasterTemp: C:/VST-DMS-APPS/Template/dealer-master/
+    userActivityLogTemp: C:/VST-DMS-APPS/REPORTS/activity log/
+    ledgerTemplate: C:/VST-DMS-APPS/Template/Ledger Template/
+
+logging:
+  level:
+    root: INFO
+    com.hitech: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+    com.netflix.discovery: WARN
+    com.netflix.eureka: WARN
+    com.sun.jersey: WARN
+    org.apache.http: WARN
