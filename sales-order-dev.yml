@@ -1,0 +1,19 @@
+spring:
+  thymeleaf:
+    cache: false
+
+file:
+  upload-dir:
+    Report: C:/VST-DMS-APPS/REPORTS/pdi/
+    ReportTwo: C:/VST-DMS-APPS/REPORTS/grn/
+    ReportThree: C:/VST-DMS-APPS/REPORTS/machine po/
+    ReportFour: C:/VST-DMS-APPS/REPORTS/purchase return/
+    ReportFive: C:/VST-DMS-APPS/REPORTS/gst invoice/
+    StockTemplate: C:/VST-DMS-APPS/Template/Stock Template/
+    Reports: C:/VST-DMS-APPS/REPORTS/Stock/
+
+logging:
+  level:
+    root: DEBUG
+    com.hitech: DEBUG
+    org.springframework.security: DEBUG
